@@ -15,12 +15,12 @@ final class DatabaseConnection
 
     private function __construct()
     {
-        $driver = $_ENV['DB_TYPE'] ?? 'mysql';
-        $host = $_ENV['DB_HOST'] ?? 'mysql';
-        $port = $_ENV['DB_PORT'] ?? '3306';
-        $dbName = $_ENV['DB_NAME'] ?? 'app';
-        $user = $_ENV['DB_USERNAME'] ?? 'app';
-        $password = $_ENV['DB_PASSWORD'] ?? 'app';
+        $driver = (string) config('database.driver', 'mysql');
+        $host = (string) config('database.host', 'mysql');
+        $port = (string) config('database.port', 3306);
+        $dbName = (string) config('database.database', 'app');
+        $user = (string) config('database.username', 'app');
+        $password = (string) config('database.password', 'app');
 
         $dsn = sprintf('%s:host=%s;port=%s;dbname=%s;charset=utf8mb4', $driver, $host, $port, $dbName);
 
