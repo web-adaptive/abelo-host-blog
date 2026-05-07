@@ -14,7 +14,9 @@ final class PostDTO
         public readonly string $status,
         public readonly ?string $img,
         public readonly int $viewsCount,
-        public readonly int $sort
+        public readonly int $sort,
+        public readonly ?string $createdAt,
+        public readonly ?string $updatedAt
     ) {
     }
 }

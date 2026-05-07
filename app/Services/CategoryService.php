@@ -68,6 +68,7 @@ final class CategoryService
                 'id' => (int) $row['post_id'],
                 'title' => (string) $row['post_title'],
                 'description' => $row['post_description'] !== null ? (string) $row['post_description'] : null,
+                'img' => $row['post_img'] !== null ? (string) $row['post_img'] : null,
                 'created_at' => (string) $row['post_created_at'],
             ];
         }

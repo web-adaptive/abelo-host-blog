@@ -43,7 +43,9 @@ final class Router
                 continue;
             }
 
-            ($route['handler'])(...$params);
+            $args = $params;
+            $args[] = $request;
+            ($route['handler'])(...$args);
             return;
         }
 
