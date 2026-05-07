@@ -9,6 +9,9 @@ use App\Http\Response;
 use App\Services\SeedService;
 use App\View\ViewRenderer;
 
+/**
+ * Контроллер ручного запуска сидирования.
+ */
 final class SeedControllers extends BaseController
 {
     private SeedService $seedService;
@@ -22,6 +25,12 @@ final class SeedControllers extends BaseController
         $this->seedService = $seedService;
     }
 
+    /**
+     * Выполняет сидирование и рендерит страницу результата.
+     *
+     * @param Request $request HTTP-запрос.
+     * @return void
+     */
     public function run(Request $request): void
     {
         $result = $this->seedService->run();

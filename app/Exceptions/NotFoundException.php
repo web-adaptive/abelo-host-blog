@@ -6,6 +6,9 @@ namespace App\Exceptions;
 
 use App\Enums\HttpStatusCodeEnum;
 
+/**
+ * Исключение для ситуации "ресурс не найден".
+ */
 final class NotFoundException extends HttpException
 {
     public function __construct(string $message = 'Page not found')

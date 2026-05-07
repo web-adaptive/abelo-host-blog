@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Enums;
 
+/**
+ * HTTP-статусы, используемые в приложении.
+ */
 enum HttpStatusCodeEnum: int
 {
     case OK = 200;

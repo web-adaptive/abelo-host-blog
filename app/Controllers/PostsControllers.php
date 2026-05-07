@@ -10,6 +10,9 @@ use App\Http\Response;
 use App\Services\PostService;
 use App\View\ViewRenderer;
 
+/**
+ * Контроллер страницы отдельного поста.
+ */
 final class PostsControllers extends BaseController
 {
     public function __construct(
@@ -20,6 +23,14 @@ final class PostsControllers extends BaseController
         parent::__construct($view, $response);
     }
 
+    /**
+     * Показывает пост и блок похожих публикаций.
+     *
+     * @param int $id Идентификатор поста.
+     * @param Request $request HTTP-запрос.
+     * @return void
+     * @throws NotFoundException Если пост не найден.
+     */
     public function show(int $id, Request $request): void
     {
         $post = $this->postService->getPost($id);

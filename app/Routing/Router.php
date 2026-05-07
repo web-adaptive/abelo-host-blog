@@ -8,15 +8,33 @@ use App\Exceptions\MethodNotAllowedException;
 use App\Exceptions\NotFoundException;
 use App\Http\Request;
 
+/**
+ * Простой декларативный роутер.
+ */
 final class Router
 {
     private array $routes = [];
 
+    /**
+     * Регистрирует GET-маршрут.
+     *
+     * @param string $path URI-шаблон маршрута.
+     * @param callable $handler Обработчик маршрута.
+     * @return void
+     */
     public function get(string $path, callable $handler): void
     {
         $this->add('GET', $path, $handler);
     }
 
+    /**
+     * Регистрирует маршрут с произвольным методом.
+     *
+     * @param string $method HTTP-метод.
+     * @param string $path URI-шаблон маршрута.
+     * @param callable $handler Обработчик маршрута.
+     * @return void
+     */
     public function add(string $method, string $path, callable $handler): void
     {
         $this->routes[] = [
@@ -26,6 +44,14 @@ final class Router
         ];
     }
 
+    /**
+     * Выполняет сопоставление маршрута и вызывает обработчик.
+     *
+     * @param Request $request Текущий HTTP-запрос.
+     * @return void
+     * @throws MethodNotAllowedException Если путь найден, но метод не поддерживается.
+     * @throws NotFoundException Если путь не найден.
+     */
     public function dispatch(Request $request): void
     {
         $pathMatched = false;
@@ -56,6 +82,13 @@ final class Router
         throw new NotFoundException();
     }
 
+    /**
+     * Сопоставляет путь маршрута с фактическим путем запроса.
+     *
+     * @param string $routePath Шаблон маршрута.
+     * @param string $requestPath Фактический путь запроса.
+     * @return list<int>|null
+     */
     private function matchPath(string $routePath, string $requestPath): ?array
     {
         $pattern = preg_replace('#\{[a-zA-Z_][a-zA-Z0-9_]*\}#', '([0-9]+)', $routePath);

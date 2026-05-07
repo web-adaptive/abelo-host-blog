@@ -6,6 +6,9 @@ namespace App\Services;
 
 use App\Repositories\SeedRepository;
 
+/**
+ * Сервис запуска сидирования данных.
+ */
 final class SeedService
 {
     private SeedRepository $seedRepository;
@@ -15,6 +18,11 @@ final class SeedService
         $this->seedRepository = $seedRepository;
     }
 
+    /**
+     * Запускает повторное заполнение базы тестовыми данными.
+     *
+     * @return array{categories:int,posts:int,relations:int}
+     */
     public function run(): array
     {
         return $this->seedRepository->reseed();

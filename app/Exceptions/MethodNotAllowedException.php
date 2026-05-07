@@ -6,6 +6,9 @@ namespace App\Exceptions;
 
 use App\Enums\HttpStatusCodeEnum;
 
+/**
+ * Исключение для неподдерживаемого HTTP-метода.
+ */
 final class MethodNotAllowedException extends HttpException
 {
     public function __construct(string $message = 'Method Not Allowed')

@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\DTO;
 
+/**
+ * DTO категории.
+ */
 final class CategoryDTO
 {
     public function __construct(

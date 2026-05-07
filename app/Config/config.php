@@ -2,6 +2,13 @@
 
 declare(strict_types=1);
 
+/**
+ * Достаёт значение из конфигов по ключу формата "section.key".
+ *
+ * @param string $key Ключ вида "section.option".
+ * @param mixed $default Значение по умолчанию.
+ * @return mixed
+ */
 function config(string $key, mixed $default = null): mixed
 {
     static $items = null;
