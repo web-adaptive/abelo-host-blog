@@ -18,18 +18,32 @@
 <p>Опубликовано: {$post->createdAt|default:'-'|escape}</p>
 <p>Обновлено: {$post->updatedAt|default:'-'|escape}</p>
 
-<h2>Похожие статьи</h2>
-{if $relatedPosts|@count > 0}
-    <ul>
-        {foreach $relatedPosts as $related}
-            <li>
-                <a href="/post/{$related->id|escape}">{$related->title|escape}</a>
-                <small>({$related->createdAt|default:'-'|escape})</small>
-            </li>
-        {/foreach}
-    </ul>
-{else}
-    <p>Похожие статьи не найдены.</p>
-{/if}
+<section class="category-section">
+    <div class="category-head">
+        <h2>Похожие статьи</h2>
+    </div>
+
+    {if $relatedPosts|@count > 0}
+        <div class="posts-grid">
+            {foreach $relatedPosts as $related}
+                <article class="post-card">
+                    <a href="/post/{$related->id|escape}" class="post-image-link">
+                        <img
+                            src="{$related->img|default:'/assets/images/posts/cat-1.png'|escape}"
+                            alt="{$related->title|escape}"
+                            class="post-image"
+                        >
+                    </a>
+                    <h3><a href="/post/{$related->id|escape}">{$related->title|escape}</a></h3>
+                    <small>{$related->createdAt|default:'-'|escape}</small>
+                    <p>{$related->description|default:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'|escape}</p>
+                    <a href="/post/{$related->id|escape}" class="read-more">Continue Reading</a>
+                </article>
+            {/foreach}
+        </div>
+    {else}
+        <p>Похожие статьи не найдены.</p>
+    {/if}
+</section>
 <p><a href="/">На главную</a></p>
 {/block}

@@ -2,3 +2,9 @@
 ```
 docker compose up -d
 ```
+
+
+#запуск сидов
+```
+http://localhost/seed/run
+```

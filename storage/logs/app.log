@@ -1,6 +1,0 @@
-
-[2026-05-07 11:34:36] ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'app.category' doesn't exist in /var/www/html/app/Repositories/BaseRepository.php:18
-[2026-05-07 11:34:45] ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'app.category' doesn't exist in /var/www/html/app/Repositories/BaseRepository.php:18
-[2026-05-07 11:36:29] ERROR: Database connection failed: SQLSTATE[HY000] [1049] Unknown database 'app' in /var/www/html/app/Database/DatabaseConnection.php:33
-[2026-05-07 11:40:45] ERROR: Database connection failed: SQLSTATE[HY000] [1049] Unknown database 'app' in /var/www/html/app/Database/DatabaseConnection.php:33
-[2026-05-07 11:42:26] ERROR: Database connection failed: SQLSTATE[HY000] [2002] Connection refused in /var/www/html/app/Database/DatabaseConnection.php:33

@@ -8,6 +8,7 @@ final class SeedRepository extends BaseRepository
 {
     public function reseed(): array
     {
+        $this->connection->exec('SET NAMES utf8mb4');
         $this->connection->beginTransaction();
 
         $this->connection->exec('DELETE FROM posts_to_category');
