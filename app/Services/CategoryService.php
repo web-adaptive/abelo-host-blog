@@ -9,8 +9,11 @@ use App\Repositories\CategoryRepository;
 
 final class CategoryService
 {
-    public function __construct(private readonly CategoryRepository $categoryRepository)
+    private CategoryRepository $categoryRepository;
+
+    public function __construct(CategoryRepository $categoryRepository)
     {
+        $this->categoryRepository = $categoryRepository;
     }
 
     public function getAll(): array
@@ -42,5 +45,33 @@ final class CategoryService
             $row['description'] !== null ? (string) $row['description'] : null,
             (string) $row['status']
         );
+    }
+
+    public function getHomeCategoriesWithPosts(int $postsLimit = 3): array
+    {
+        $rows = $this->categoryRepository->getCategoriesWithLatestPosts($postsLimit);
+        $result = [];
+
+        foreach ($rows as $row) {
+            $categoryId = (int) $row['category_id'];
+
+            if (!isset($result[$categoryId])) {
+                $result[$categoryId] = [
+                    'id' => $categoryId,
+                    'title' => (string) $row['category_title'],
+                    'description' => $row['category_description'] !== null ? (string) $row['category_description'] : null,
+                    'posts' => [],
+                ];
+            }
+
+            $result[$categoryId]['posts'][] = [
+                'id' => (int) $row['post_id'],
+                'title' => (string) $row['post_title'],
+                'description' => $row['post_description'] !== null ? (string) $row['post_description'] : null,
+                'created_at' => (string) $row['post_created_at'],
+            ];
+        }
+
+        return array_values($result);
     }
 }
