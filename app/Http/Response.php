@@ -11,6 +11,7 @@ final class Response
     public function html(string $content, HttpStatusCodeEnum $status = HttpStatusCodeEnum::OK): void
     {
         http_response_code($status->value);
+        header('Content-Type: text/html; charset=UTF-8');
         echo $content;
     }
 }
