@@ -29,7 +29,7 @@ return static function (\PDO $connection): Router {
     $seedService = new SeedService($seedRepository);
 
     $homeController = new HomeControllers($view, $response, $categoryService);
-    $categoryController = new CategoryControllers($view, $response, $categoryService);
+    $categoryController = new CategoryControllers($view, $response, $categoryService, $postService);
     $postController = new PostsControllers($view, $response, $postService);
     $seedController = new SeedControllers($view, $response, $seedService);
 

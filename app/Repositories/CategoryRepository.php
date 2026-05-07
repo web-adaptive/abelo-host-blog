@@ -33,6 +33,7 @@ final class CategoryRepository extends BaseRepository
                 p.id AS post_id,
                 p.title AS post_title,
                 p.description AS post_description,
+                p.img AS post_img,
                 p.created_at AS post_created_at
             FROM category AS c
             INNER JOIN (
@@ -41,6 +42,7 @@ final class CategoryRepository extends BaseRepository
                     p.id,
                     p.title,
                     p.description,
+                    p.img,
                     p.created_at,
                     ROW_NUMBER() OVER (
                         PARTITION BY pc.category_id

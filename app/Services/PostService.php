@@ -9,8 +9,11 @@ use App\Repositories\PostRepository;
 
 final class PostService
 {
-    public function __construct(private readonly PostRepository $postRepository)
+    private PostRepository $postRepository;
+
+    public function __construct(PostRepository $postRepository)
     {
+        $this->postRepository = $postRepository;
     }
 
     public function getPost(int $id): ?PostDTO
@@ -29,7 +32,9 @@ final class PostService
             (string) $row['status'],
             $row['img'] !== null ? (string) $row['img'] : null,
             (int) $row['views_count'],
-            (int) $row['sort']
+            (int) $row['sort'],
+            $row['created_at'] ?? null,
+            $row['updated_at'] ?? null
         );
     }
 
@@ -66,7 +71,21 @@ final class PostService
             (string) $row['status'],
             $row['img'] !== null ? (string) $row['img'] : null,
             (int) $row['views_count'],
-            (int) $row['sort']
+            (int) $row['sort'],
+            $row['created_at'] ?? null,
+            $row['updated_at'] ?? null
         );
+    }
+
+    public function countByCategoryId(int $categoryId): int
+    {
+        return $this->postRepository->countByCategoryId($categoryId);
+    }
+
+    public function getRelatedPosts(int $postId, int $limit = 3): array
+    {
+        $rows = $this->postRepository->getRelatedPosts($postId, $limit);
+
+        return array_map(fn (array $row): PostDTO => $this->mapDto($row), $rows);
     }
 }
