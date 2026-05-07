@@ -34,6 +34,15 @@
     {if $pagination.has_prev}
         <a href="/category/{$category->id|escape}?sort={$filters.sort|escape}&direction={$filters.direction|escape}&page={$pagination.prev_page|escape}">Назад</a>
     {/if}
+    {foreach $pagination.pages as $pageItem}
+        {if $pageItem == '...'}
+            <span> ... </span>
+        {elseif $pageItem == $pagination.current}
+            <strong>{$pageItem|escape}</strong>
+        {else}
+            <a href="/category/{$category->id|escape}?sort={$filters.sort|escape}&direction={$filters.direction|escape}&page={$pageItem|escape}">{$pageItem|escape}</a>
+        {/if}
+    {/foreach}
     {if $pagination.has_next}
         <a href="/category/{$category->id|escape}?sort={$filters.sort|escape}&direction={$filters.direction|escape}&page={$pagination.next_page|escape}">Вперед</a>
     {/if}

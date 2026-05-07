@@ -8,6 +8,9 @@ use PDO;
 use PDOException;
 use RuntimeException;
 
+/**
+ * Singleton-обёртка для PDO-подключения к БД.
+ */
 final class DatabaseConnection
 {
     private static ?self $instance = null;
@@ -34,6 +37,11 @@ final class DatabaseConnection
         }
     }
 
+    /**
+     * Возвращает единственный экземпляр подключения.
+     *
+     * @return self
+     */
     public static function getInstance(): self
     {
         if (self::$instance === null) {
@@ -43,6 +51,11 @@ final class DatabaseConnection
         return self::$instance;
     }
 
+    /**
+     * Возвращает объект PDO.
+     *
+     * @return PDO
+     */
     public function getConnection(): PDO
     {
         return $this->connection;

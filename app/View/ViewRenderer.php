@@ -6,8 +6,18 @@ namespace App\View;
 
 use Smarty\Smarty;
 
+/**
+ * Рендерер Smarty-шаблонов.
+ */
 final class ViewRenderer
 {
+    /**
+     * Рендерит шаблон и возвращает итоговый HTML.
+     *
+     * @param string $template Имя шаблона.
+     * @param array<string, mixed> $data
+     * @return string
+     */
     public function render(string $template, array $data = []): string
     {
         $smarty = new Smarty();

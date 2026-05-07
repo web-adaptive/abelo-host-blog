@@ -10,6 +10,9 @@ use App\Logging\FileLogger;
 use App\View\ViewRenderer;
 use Throwable;
 
+/**
+ * Единый обработчик исключений приложения.
+ */
 final class ExceptionHandler
 {
     private Response $response;
@@ -26,6 +29,12 @@ final class ExceptionHandler
         $this->logger = $logger;
     }
 
+    /**
+     * Преобразует исключение в HTTP-ответ и пишет ошибку в лог.
+     *
+     * @param Throwable $exception Исключение приложения.
+     * @return void
+     */
     public function handle(Throwable $exception): void
     {
         $status = HttpStatusCodeEnum::INTERNAL_SERVER_ERROR;

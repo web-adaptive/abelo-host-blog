@@ -9,6 +9,9 @@ use App\Http\Response;
 use App\Services\CategoryService;
 use App\View\ViewRenderer;
 
+/**
+ * Контроллер главной страницы.
+ */
 final class HomeControllers extends BaseController
 {
     public function __construct(
@@ -19,6 +22,12 @@ final class HomeControllers extends BaseController
         parent::__construct($view, $response);
     }
 
+    /**
+     * Показывает категории с превью постов для главной.
+     *
+     * @param Request $request HTTP-запрос.
+     * @return void
+     */
     public function index(Request $request): void
     {
         $categories = $this->categoryService->getHomeCategoriesWithPosts(3);
