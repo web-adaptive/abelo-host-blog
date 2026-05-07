@@ -1,0 +1,11 @@
+{
+  "name": "abelo-host-blog-frontend",
+  "private": true,
+  "scripts": {
+    "build:css": "sass resources/scss/app.scss public/assets/css/app.css --no-source-map --style=compressed",
+    "watch:css": "sass --watch resources/scss/app.scss:public/assets/css/app.css"
+  },
+  "devDependencies": {
+    "sass": "^1.93.1"
+  }
+}

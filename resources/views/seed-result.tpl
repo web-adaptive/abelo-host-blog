@@ -7,10 +7,11 @@
 </head>
 <body>
 <div class="container">
-<h1>{$category->title|escape}</h1>
-<p>{$category->description|escape}</p>
-<p>Статус: {$category->status|escape}</p>
-<p><a href="/">На главную</a></p>
+    <h1>{$title|escape}</h1>
+    <p>Categories: {$result.categories|escape}</p>
+    <p>Posts: {$result.posts|escape}</p>
+    <p>Relations: {$result.relations|escape}</p>
+    <p><a href="/">На главную</a></p>
 </div>
 </body>
 </html>

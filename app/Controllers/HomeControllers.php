@@ -20,7 +20,7 @@ final class HomeControllers extends BaseController
 
     public function index(): void
     {
-        $categories = $this->categoryService->getAll();
+        $categories = $this->categoryService->getHomeCategoriesWithPosts(3);
 
         $this->render('home.tpl', [
             'title' => 'Главная страница',
